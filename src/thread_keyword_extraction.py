@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Reddit Thread Keyword Extraction Pipeline
 -----------------------------------------
@@ -23,8 +22,8 @@ from sentence_transformers import SentenceTransformer
 # ==============================
 class Config:
     # File paths
-    INPUT_FILE: str = "top_comment_thread.json"
-    OUTPUT_FILE: str = "data/keybert_results.csv"
+    INPUT_FILE: str = "reddit_thread_all.json"
+    OUTPUT_FILE: str = "data/keybert/keybert_results_2.csv"
 
     # Embedding model
     EMBEDDING_MODEL: str = "all-MiniLM-L6-v2"
@@ -49,7 +48,7 @@ logging.basicConfig(
 # ==============================
 def load_data(file_path: Union[str, Path]) -> Any:
     """Load data from JSON or CSV."""
-    file_path = Path("data/top_comment_thread.json")
+    file_path = Path("data/threads/reddit_thread_all.json")
     if not file_path.exists():
         raise FileNotFoundError(f"File not found: {file_path}")
 
@@ -63,7 +62,7 @@ def load_data(file_path: Union[str, Path]) -> Any:
 
 
 def flatten_json_thread(data: Dict[str, Any]) -> List[Dict[str, Any]]:
-    """Flatten nested Reddit thread JSON into a list of comments."""
+    """Flatten nested Reddit thread JSON (supports both single and multi-thread formats)."""
     flattened_comments: List[Dict[str, Any]] = []
 
     def traverse(comment: Dict[str, Any], parent_id: Optional[str] = None):
@@ -77,13 +76,16 @@ def flatten_json_thread(data: Dict[str, Any]) -> List[Dict[str, Any]]:
         for reply in comment.get("replies", []):
             traverse(reply, parent_id=comment.get("author"))
 
-    # Detect JSON structure
-    if "selected_comment" in data:
+    # Detect JSON structure type
+    if "selected_comment" in data:  # Old structure (single top comment)
         traverse(data["selected_comment"])
-    elif isinstance(data, list):
-        return data  # Already flattened
+    elif "comments" in data:  # New structure (all top-level comments)
+        for top_comment in data["comments"]:
+            traverse(top_comment)
+    elif isinstance(data, list):  # Already flattened
+        return data
     else:
-        raise ValueError("Invalid JSON structure: cannot find 'selected_comment'.")
+        raise ValueError("Invalid JSON structure: expected 'selected_comment' or 'comments'.")
 
     return flattened_comments
 

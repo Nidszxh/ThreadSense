@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+
 """
 Data Preparation for LLM Summarization
 --------------------------------------
@@ -19,9 +19,9 @@ import pandas as pd
 # CONFIGURATION
 # ==============================
 class Config:
-    INPUT_FILE: str = "data/keybert/keybert_results.csv"
-    OUTPUT_JSON: str = "data/llm_inputs/llm_input.json"
-    OUTPUT_EMB: str = "data/llm_inputs/embeddings.npy"
+    INPUT_FILE: str = "data/keybert/keybert_results_2.csv"
+    OUTPUT_JSON: str = "data/llm_inputs/llm_input_2.json"
+    OUTPUT_EMB: str = "data/llm_inputs/embeddings_2.npy"
 
 
 # ==============================
