@@ -22,7 +22,7 @@ from transformers import pipeline
 # ==============================
 # CONFIG / PATHS
 # ==============================
-INPUT_FILE = Path(r"C:\Users\Sriman Rakshan N\Documents\Amrita\Project_Sem_V\new\ThreadSense\data\llm_inputs\llm_input_2.json")
+INPUT_FILE = Path(r"/home/nidszxh/ThreadSense/data/llm_inputs/llm_input_2.json")
 OUTPUT_PATH = Path("data/fine_tune/reddit_summarization_dataset.jsonl")
 OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
 

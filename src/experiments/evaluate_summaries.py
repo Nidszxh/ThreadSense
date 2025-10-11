@@ -106,7 +106,7 @@ def main(runs_json_path, gold_json_path, output_path):
         json.dump(results, f, indent=4)
 
 if __name__ == "__main__":
-    runs_json_path = r"C:\Users\Sriman Rakshan N\Documents\Amrita\Project_Sem_V\new\ThreadSense\outputs\experiments\run_20250827_223734_9f638fdc\runs.json"
-    gold_json_path = r"C:\Users\Sriman Rakshan N\Documents\Amrita\Project_Sem_V\new\ThreadSense\outputs\thread_summary.json"
-    output_path = "outputs\evaluated_metrics.json"
+    runs_json_path = r"/home/nidszxh/ThreadSense/outputs/experiments/run_20250827_223734_9f638fdc/runs.json"
+    gold_json_path = r"/home/nidszxh/ThreadSense/outputs/thread_summary.json"
+    output_path = "outputs/evaluated_metrics.json"
     main(runs_json_path, gold_json_path, output_path)
