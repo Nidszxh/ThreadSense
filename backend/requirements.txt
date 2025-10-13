@@ -1,0 +1,15 @@
+fastapi>=0.115,<1
+uvicorn[standard]>=0.34,<1
+pydantic>=2.10,<3
+pydantic-settings>=2.7,<3
+SQLAlchemy>=2.0,<3
+psycopg[binary]>=3.2,<4
+alembic>=1.14,<2
+redis>=5.2,<6
+pgvector>=0.3,<1
+celery>=5.4,<6
+praw>=7.8,<8
+keybert>=0.8,<1
+sentence-transformers>=3.0,<4
+numpy>=1.26,<3
+openai>=1.60,<2
