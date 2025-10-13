@@ -191,6 +191,13 @@ cython_debug/
 # Ruff stuff:
 .ruff_cache/
 
+# Model weights / checkpoints (too large for git)
+data/fine_tune/models/
+*.safetensors
+*.pt
+*.pth
+*.npy
+
 # PyPI configuration file
 .pypirc
 
